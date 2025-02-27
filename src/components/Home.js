@@ -412,8 +412,8 @@ const RuralRiseHomepage = () => {
       </section>
 
       {/* Call to Action */}
-      <section id="FAQ" className="text-center">
-        <h1>Frequently Asked Questions(FAQ's)</h1>
+      <section id="FAQ">
+        <h1 className="text-center">Frequently Asked Questions(FAQ's)</h1>
         <FAQ />
       </section>
 
