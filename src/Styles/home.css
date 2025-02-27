@@ -1,0 +1,37 @@
+body {
+  background-image: url("../Assets/images/homeback.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+.home {
+  margin: 1% 7% 0% 7%;
+  border-radius: 10px;
+  padding: 2% 1% 1% 2%;
+  width: 85%;
+  background-color: rgba(56, 56, 56, 0.4);
+  height: 100vh;
+}
+.joinbtn {
+  position: absolute;
+  top: 40%;
+  left: 35%;
+  width: 40%;
+}
+.joinbtn input {
+  width: fit-content;
+  border: 2px solid gold;
+  margin-left: 1%;
+  padding: 1% 5% 1% 5%;
+  border-radius: 5px;
+  background-color: rgba(56, 56, 56, 0.3);
+  color: azure;
+}
+.joinbtn input:hover {
+  background-color: gold;
+  border: 1px solid transparent;
+  color: aliceblue;
+}
+
+.joinbtn p {
+  font-size: xx-large;
+}
