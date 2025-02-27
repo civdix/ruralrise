@@ -412,12 +412,15 @@ const RuralRiseHomepage = () => {
       </section>
 
       {/* Call to Action */}
+      <section id="FAQ" className="text-center">
+        <h1>Frequently Asked Questions(FAQ's)</h1>
+        <FAQ />
+      </section>
 
       <section
         className="py-5 bg-gradient text-white"
         style={{ background: "linear-gradient(to right, #198754, #0d6efd)" }}
       >
-        <FAQ />
         <div className="container text-center text-black">
           <h2 className="fw-bold mb-4">Join the Rural Rise Movement</h2>
           <p className="lead mb-5 mx-auto" style={{ maxWidth: "800px" }}>
