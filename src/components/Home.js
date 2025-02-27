@@ -548,7 +548,7 @@ const RuralRiseHomepage = () => {
                   </a>
                 </li>
                 <li className="mb-2">
-                  <a href="#" className="text-decoration-none text">
+                  <a href="#FAQ" className="text-decoration-none text">
                     FAQ
                   </a>
                 </li>
@@ -557,8 +557,32 @@ const RuralRiseHomepage = () => {
 
             <div className="col-md-3">
               <h5 className="fw-bold mb-3">Contact Us</h5>
-              <p className="text mb-2">info@ruralrise.in</p>
-              <p className="text">+91 9720965985</p>
+              <a
+                href="mailto:dixitshivam249@gmail.com"
+                className="text text-decoration-none mb-2 text-light"
+              >
+                dixitshivam249@gmail.com
+              </a>
+              <a
+                href="mailto:simran184953@gmail.com"
+                className="text text-decoration-none mb-2 d-block text-light"
+              >
+                simran184953@gmail.com
+              </a>
+              <a
+                href="mailto:info@ruralrise.in"
+                className="text text-decoration-none mb-2 d-block text-light"
+              >
+                info@ruralrise.in
+              </a>
+
+              <a
+                href="tel:+1234567890"
+                className=" text-decoration-none text-light"
+              >
+                Call Us: +91 9720-9659-85
+              </a>
+
               <div className="d-flex gap-3 mt-3">
                 <a href="#" className="text-decoration-none text">
                   <FaFacebook />

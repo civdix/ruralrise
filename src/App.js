@@ -9,10 +9,7 @@ import {
 import "./App.css";
 import Navbar from "./components/Navbar";
 import Home from "./components/Home";
-import Signup from "./components/Signup";
-import Login from "./components/Login";
-import About from "./components/About";
-import Contact from "./components/Contact";
+
 import VillagePortal from "./components/VillagePortal";
 import BusinessOwnerSignup from "./components/businessSignUp";
 import VillageRegistrationForm from "./components/villageSignUp";
@@ -34,10 +31,7 @@ const App = () => {
       <div>
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/signup" element={<Signup />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/about" element={<About />} />
-          <Route path="/contact" element={<Contact />} />{" "}
+
           <Route path="/VillageSignup" element={<VillageRegistrationForm />} />
           <Route path="/BusinessSignup" element={<BusinessOwnerSignup />} />
           <Route path="/village-portal" element={<VillagePortal />} />
