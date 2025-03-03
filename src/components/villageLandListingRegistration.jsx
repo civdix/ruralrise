@@ -1,40 +1,47 @@
 import React, { useState } from "react";
+import { FaBackward } from "react-icons/fa";
+import { Link } from "react-router";
 
 const VillageRegistrationForm = () => {
   const [formData, setFormData] = useState({
-    villageName: "",
-    state: "",
-    district: "",
-    pincode: "",
-    coordinates: "",
-    panchayatName: "",
-    sarpanchName: "",
-    sarpanchContact: "",
-    panchayatEmail: "",
-    blockName: "",
-    totalPopulation: "",
-    malePopulation: "",
-    femalePopulation: "",
-    childrenPopulation: "",
-    literacyRate: "",
-    scPopulation: "",
-    stPopulation: "",
-    obcPopulation: "",
+    villageName: "", //Done
+    panchayat: "",
+    district: "", //Done
+    state: "", //Done
+    pinCode: "",
+    censusCode: 0,
+    tehsil: "", //Done
     facilities: {
       water: false,
       electricity: false,
-      healthcare: false,
+      healthcare: false, //Done
       education: false,
       internet: false,
       roads: false,
     },
-    achievements: "",
-    developmentProjects: "",
-    microBusinesses: "",
+    coordinates: {
+      latitude: "", //Done
+      longitude: "", //Done
+    },
+    googleMapLink: "", //Done
+
+    plotNumber: 0, //Done
+    totalArea: 0, //in Acres  //Done
+    landType: "", //Done
+    registrationNumber: 0, //Done
+    landValue: 0, // Done
+
+    landDeed: "",
+    landownershipProof: "",
+    sarpanchName: "",
+    sarpanchPhone: "",
+    panchayatEmail: "",
+
+    // microBusinesses: "", we will put this and the all major facotries around 25km radius of village by village registration by sarpanch
   });
 
   const handleChange = (e) => {
-    const { name, value, type, checked } = e.target;
+    const { name, value, type, checked, id } = e.target;
 
     if (type === "checkbox") {
       setFormData({
@@ -43,6 +50,11 @@ const VillageRegistrationForm = () => {
           ...formData.facilities,
           [name]: checked,
         },
+      });
+    } else if (name == "coordinates") {
+      setFormData({
+        ...formData,
+        [name]: { ...formData.coordinates, [id]: value },
       });
     } else {
       setFormData({
@@ -65,7 +77,14 @@ const VillageRegistrationForm = () => {
         <div className="col-md-10">
           <div className="card">
             <div className="card-header bg-primary text-white text-center">
-              <h2>Village Registration Form</h2>
+              <Link to="/">
+                <FaBackward
+                  size={25}
+                  className="float-start my-2"
+                  color="white"
+                />
+              </Link>
+              <h2>Land Registration Form</h2>
             </div>
 
             <div className="card-body">
@@ -146,19 +165,48 @@ const VillageRegistrationForm = () => {
                           required
                         />
                       </div>
-
                       <div className="col-md-6 mb-3">
-                        <label htmlFor="pincode" className="form-label">
+                        <label htmlFor="censusCode" className="form-label">
+                          Village Code or CensusCode{" "}
+                          <span className="text-danger">*</span>
+                        </label>
+                        {/* When Villagers fills up the Village Code then after certain length we will make an request in village collection to find village infomation */}
+                        <input
+                          type="text"
+                          className="form-control"
+                          id="censusCode"
+                          name="censusCode"
+                          value={formData.censusCode}
+                          onChange={handleChange}
+                          required
+                        />
+                      </div>
+                      <div className="col-md-6 mb-3">
+                        <label htmlFor="pinCode" className="form-label">
                           PIN Code <span className="text-danger">*</span>
                         </label>
                         <input
                           type="text"
                           className="form-control"
-                          id="pincode"
-                          name="pincode"
+                          id="pinCode"
+                          name="pinCode"
                           value={formData.pincode}
                           onChange={handleChange}
                           pattern="[0-9]{6}"
+                          required
+                        />
+                      </div>
+                      <div className="col-md-6 mb-3">
+                        <label htmlFor="tehsil" className="form-label">
+                          Tehsil <span className="text-danger">*</span>
+                        </label>
+                        <input
+                          type="text"
+                          className="form-control"
+                          id="tehsil"
+                          name="tehsil"
+                          value={formData.tehsil}
+                          onChange={handleChange}
                           required
                         />
                       </div>
@@ -167,14 +215,37 @@ const VillageRegistrationForm = () => {
                         <label htmlFor="coordinates" className="form-label">
                           GPS Coordinates (if available)
                         </label>
+                        <div className="d-flex flex-direction-row">
+                          <input
+                            type="text"
+                            className="form-control w-50 "
+                            id="latitude"
+                            name="coordinates"
+                            value={formData.coordinates.latitude}
+                            onChange={handleChange}
+                            placeholder="Latitude"
+                          />{" "}
+                          <input
+                            type="text"
+                            className="form-control w-50 "
+                            id="longitude"
+                            name="coordinates"
+                            value={formData.coordinates.longitude}
+                            onChange={handleChange}
+                            placeholder="Longitude"
+                          />
+                        </div>
+                        <center>
+                          <span>Or</span>
+                        </center>
                         <input
                           type="text"
-                          className="form-control"
-                          id="coordinates"
-                          name="coordinates"
-                          value={formData.coordinates}
+                          className="form-control  "
+                          id="googleMapLink"
+                          name="googleMapLink"
+                          value={formData.googleMapLink}
                           onChange={handleChange}
-                          placeholder="Latitude, Longitude"
+                          placeholder="Google Map Link"
                         />
                       </div>
                     </div>
@@ -248,17 +319,96 @@ const VillageRegistrationForm = () => {
                           onChange={handleChange}
                         />
                       </div>
+                    </div>
+                  </div>
+                </div>
 
+                {/* Panchayat Details */}
+                <div className="card mb-4">
+                  <div className="card-header bg-light">
+                    <h4 className="mb-0 text-primary">Land Details</h4>
+                  </div>
+                  <div className="card-body">
+                    <div className="row">
                       <div className="col-md-6 mb-3">
-                        <label htmlFor="blockName" className="form-label">
-                          Block/Taluka Name
+                        <label htmlFor="plotNumber" className="form-label">
+                          Plot Number <span className="text-danger">*</span>
                         </label>
                         <input
                           type="text"
                           className="form-control"
-                          id="blockName"
-                          name="blockName"
-                          value={formData.blockName}
+                          id="plotNumber"
+                          name="plotNumber"
+                          value={formData.plotNumber}
+                          onChange={handleChange}
+                          required
+                        />
+                      </div>
+
+                      <div className="col-md-6 mb-3">
+                        <label htmlFor="totalArea" className="form-label">
+                          Land Area(in Acres){" "}
+                          <span className="text-danger">*</span>
+                        </label>
+                        <input
+                          type="text"
+                          className="form-control"
+                          id="totalArea"
+                          name="totalArea"
+                          value={formData.totalArea}
+                          onChange={handleChange}
+                          required
+                        />
+                      </div>
+
+                      <div className="col-md-6 mb-3">
+                        <label htmlFor="landType" className="form-label">
+                          Land Type <span className="text-danger">*</span>
+                        </label>
+                        <select
+                          className="form-select"
+                          id="landType"
+                          name="landType"
+                          value={formData.landType}
+                          onChange={handleChange}
+                          required
+                        >
+                          <option value="">Select Land Type</option>
+                          <option value="Agricultural">Agricultural</option>
+                          <option value="Berran">Berran</option>
+                          <option value="Residential">Resiential</option>
+                          <option value="Commercial">Commercial</option>
+                          <option value="Mixed">Mixed</option>
+                        </select>
+                      </div>
+
+                      <div className="col-md-6 mb-3">
+                        <label
+                          htmlFor="registrationNumber"
+                          className="form-label"
+                        >
+                          Registration Number
+                        </label>
+                        <input
+                          type="text"
+                          className="form-control"
+                          id="registrationNumber"
+                          name="registrationNumber"
+                          value={formData.registrationNumber}
+                          onChange={handleChange}
+                        />
+                      </div>
+
+                      <div className="col-md-6 mb-3">
+                        <label htmlFor="landValue" className="form-label">
+                          Land Value (In Rupees)
+                        </label>
+                        <input
+                          type="text"
+                          className="form-control"
+                          id="landValue"
+                          name="landValue"
+                          value={formData.landValue}
                           onChange={handleChange}
                         />
                       </div>
@@ -266,131 +416,41 @@ const VillageRegistrationForm = () => {
                   </div>
                 </div>
 
-                {/* Population Details */}
+                {/* Land Owner Documents */}
                 <div className="card mb-4">
                   <div className="card-header bg-light">
-                    <h4 className="mb-0 text-primary">Population Details</h4>
+                    <h4 className="mb-0 text-primary">Documents</h4>
                   </div>
                   <div className="card-body">
                     <div className="row">
-                      <div className="col-md-4 mb-3">
-                        <label htmlFor="totalPopulation" className="form-label">
-                          Total Population{" "}
-                          <span className="text-danger">*</span>
+                      <div className="col-md-6 mb-3">
+                        <label htmlFor="landDeed" className="form-label">
+                          Land Deed <span className="text-warning">*</span>
                         </label>
                         <input
-                          type="number"
+                          type="text"
                           className="form-control"
-                          id="totalPopulation"
-                          name="totalPopulation"
-                          value={formData.totalPopulation}
-                          onChange={handleChange}
-                          required
-                        />
-                      </div>
-
-                      <div className="col-md-4 mb-3">
-                        <label htmlFor="malePopulation" className="form-label">
-                          Male Population
-                        </label>
-                        <input
-                          type="number"
-                          className="form-control"
-                          id="malePopulation"
-                          name="malePopulation"
-                          value={formData.malePopulation}
+                          id="landDeed"
+                          name="landDeed"
+                          value={formData.landDeed}
                           onChange={handleChange}
                         />
                       </div>
 
-                      <div className="col-md-4 mb-3">
+                      <div className="col-md-6 mb-3">
                         <label
-                          htmlFor="femalePopulation"
+                          htmlFor="landOwnershipProof"
                           className="form-label"
                         >
-                          Female Population
+                          Land Ownership Proof{" "}
+                          <span className="text-warning">*</span>
                         </label>
                         <input
-                          type="number"
+                          type="text"
                           className="form-control"
-                          id="femalePopulation"
-                          name="femalePopulation"
-                          value={formData.femalePopulation}
-                          onChange={handleChange}
-                        />
-                      </div>
-
-                      <div className="col-md-4 mb-3">
-                        <label
-                          htmlFor="childrenPopulation"
-                          className="form-label"
-                        >
-                          Children (0-14 years)
-                        </label>
-                        <input
-                          type="number"
-                          className="form-control"
-                          id="childrenPopulation"
-                          name="childrenPopulation"
-                          value={formData.childrenPopulation}
-                          onChange={handleChange}
-                        />
-                      </div>
-
-                      <div className="col-md-4 mb-3">
-                        <label htmlFor="literacyRate" className="form-label">
-                          Literacy Rate (%)
-                        </label>
-                        <input
-                          type="number"
-                          className="form-control"
-                          id="literacyRate"
-                          name="literacyRate"
-                          value={formData.literacyRate}
-                          onChange={handleChange}
-                          min="0"
-                          max="100"
-                        />
-                      </div>
-
-                      <div className="col-md-4 mb-3">
-                        <label htmlFor="scPopulation" className="form-label">
-                          SC Population
-                        </label>
-                        <input
-                          type="number"
-                          className="form-control"
-                          id="scPopulation"
-                          name="scPopulation"
-                          value={formData.scPopulation}
-                          onChange={handleChange}
-                        />
-                      </div>
-
-                      <div className="col-md-4 mb-3">
-                        <label htmlFor="stPopulation" className="form-label">
-                          ST Population
-                        </label>
-                        <input
-                          type="number"
-                          className="form-control"
-                          id="stPopulation"
-                          name="stPopulation"
-                          value={formData.stPopulation}
-                          onChange={handleChange}
-                        />
-                      </div>
-
-                      <div className="col-md-4 mb-3">
-                        <label htmlFor="obcPopulation" className="form-label">
-                          OBC Population
-                        </label>
-                        <input
-                          type="number"
-                          className="form-control"
-                          id="obcPopulation"
-                          name="obcPopulation"
-                          value={formData.obcPopulation}
+                          id="landOwnershipProof"
+                          name="landOwnershipProof"
+                          value={formData.landOwnershipProof}
                           onChange={handleChange}
                         />
                       </div>
@@ -517,62 +577,6 @@ const VillageRegistrationForm = () => {
                 </div>
 
                 {/* Achievements & Development */}
-                <div className="card mb-4">
-                  <div className="card-header bg-light">
-                    <h4 className="mb-0 text-primary">
-                      Achievements & Development
-                    </h4>
-                  </div>
-                  <div className="card-body">
-                    <div className="mb-3">
-                      <label htmlFor="achievements" className="form-label">
-                        Village Achievements
-                      </label>
-                      <textarea
-                        className="form-control"
-                        id="achievements"
-                        name="achievements"
-                        value={formData.achievements}
-                        onChange={handleChange}
-                        rows="4"
-                        placeholder="List any awards, recognitions, or notable achievements of the village"
-                      ></textarea>
-                    </div>
-
-                    <div className="mb-3">
-                      <label
-                        htmlFor="developmentProjects"
-                        className="form-label"
-                      >
-                        Ongoing Development Projects
-                      </label>
-                      <textarea
-                        className="form-control"
-                        id="developmentProjects"
-                        name="developmentProjects"
-                        value={formData.developmentProjects}
-                        onChange={handleChange}
-                        rows="4"
-                        placeholder="Describe any ongoing development projects or initiatives"
-                      ></textarea>
-                    </div>
-
-                    <div className="mb-3">
-                      <label htmlFor="microBusinesses" className="form-label">
-                        Micro Businesses & Local Economy
-                      </label>
-                      <textarea
-                        className="form-control"
-                        id="microBusinesses"
-                        name="microBusinesses"
-                        value={formData.microBusinesses}
-                        onChange={handleChange}
-                        rows="4"
-                        placeholder="Describe local businesses, cottage industries, and economic activities"
-                      ></textarea>
-                    </div>
-                  </div>
-                </div>
 
                 <div className="text-center mb-3">
                   <button type="submit" className="btn btn-primary btn-lg px-5">

@@ -1,10 +1,108 @@
 import React, { useState } from "react";
 import Navbar from "./Navbar";
+import {
+  FaPhoneAlt,
+  FaEnvelope,
+  FaMapMarkedAlt,
+  FaCheckCircle,
+  FaHome,
+  FaUserAlt,
+} from "react-icons/fa";
+
+const UserDetails = ({ data }) => {
+  return (
+    <div className="container mt-4">
+      <div className="row">
+        <div className="col-md-6">
+          <div className="card border-primary mb-3">
+            <div className="card-header bg-primary text-white">
+              User Information
+            </div>
+            <div className="card-body">
+              <p>
+                <strong>Name:</strong> {data.name}
+              </p>
+              <p>
+                <strong>Gender:</strong> {data.gender}
+              </p>
+              <p>
+                <strong>Age:</strong> {data.age}
+              </p>
+              <p>
+                <strong>Mobile Number:</strong> {data.mobileNumber}
+              </p>
+              <p>
+                <strong>Alternate Number:</strong> {data.alternateNumber}
+              </p>
+              <p>
+                <strong>Family Members:</strong> {data.familyMembers}
+              </p>
+              <p>
+                <strong>Email:</strong> {data.email}
+              </p>
+            </div>
+          </div>
+        </div>
+        <div className="col-md-6">
+          <div className="card border-success mb-3">
+            <div className="card-header bg-success text-white">
+              Land Details
+            </div>
+            <div className="card-body">
+              <p>
+                <strong>Village Name:</strong> {data.villageName}
+              </p>
+              <p>
+                <strong>Panchayat:</strong> {data.panchayat}
+              </p>
+              <p>
+                <strong>Land Ownership:</strong>{" "}
+                {data.landOwnership ? "Yes" : "No"}
+              </p>
+              <p>
+                <strong>Land Area:</strong> {data.landArea} sq. meters
+              </p>
+              <p>
+                <strong>Land Type:</strong> {data.landType}
+              </p>
+              <p>
+                <strong>Land Description:</strong> {data.landDescription}
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
 
 // Dummy data for villages
 const dummyVillages = [
   {
     id: 1,
+    ownerInformation: {
+      name: "Rajesh Kumar",
+      gender: "Male",
+      age: 40,
+      mobileNumber: 9876543210,
+      alternateNumber: 9123456789,
+      familyMembers: 5,
+      email: "rajesh.kumar@example.com",
+      villageName: "Babhani",
+      panchayat: "Babhani Panchayat",
+      landmark: "Near the temple",
+      district: "Ballia",
+      tehsil: "Ballia Tehsil",
+      state: "Uttar Pradesh",
+      landOwnership: true,
+      landArea: 100,
+      landType: "Agricultural",
+      landUsage: [1, 2],
+      landDescription:
+        "This is fertile agricultural land used for farming rice and wheat.",
+      termsAgree: true,
+      contactConsent: true,
+    },
     basicInfo: {
       villageName: "Rampur",
       state: "Uttar Pradesh",
@@ -42,6 +140,29 @@ const dummyVillages = [
   },
   {
     id: 2,
+    ownerInformation: {
+      name: "Neha Verma",
+      gender: "Female",
+      age: 32,
+      mobileNumber: 9198765432,
+      alternateNumber: 9201234567,
+      familyMembers: 4,
+      email: "neha.verma@example.com",
+      villageName: "Jamshedpur",
+      panchayat: "Jamshedpur Panchayat",
+      landmark: "Near the main road",
+      district: "East Singhbhum",
+      tehsil: "Jamshedpur",
+      state: "Jharkhand",
+      landOwnership: true,
+      landArea: 150,
+      landType: "Commercial",
+      landUsage: [3],
+      landDescription:
+        "A commercial land for setting up a retail business or office.",
+      termsAgree: true,
+      contactConsent: true,
+    },
     basicInfo: {
       villageName: "Chandpur",
       state: "Bihar",
@@ -79,6 +200,29 @@ const dummyVillages = [
   },
   {
     id: 3,
+    ownerInformation: {
+      name: "Amit Kumar",
+      gender: "Male",
+      age: 38,
+      mobileNumber: 9956123456,
+      alternateNumber: 9665432100,
+      familyMembers: 3,
+      email: "amit.kumar@example.com",
+      villageName: "Chhapra",
+      panchayat: "Chhapra Panchayat",
+      landmark: "Near the bus stop",
+      district: "Saran",
+      tehsil: "Chhapra",
+      state: "Bihar",
+      landOwnership: true,
+      landArea: 90,
+      landType: "Mixed",
+      landUsage: [2, 3],
+      landDescription:
+        "A mixed-use plot, part residential and part for small-scale farming.",
+      termsAgree: true,
+      contactConsent: true,
+    },
     basicInfo: {
       villageName: "Suryapur",
       state: "Maharashtra",
@@ -115,6 +259,29 @@ const dummyVillages = [
   },
   {
     id: 4,
+    ownerInformation: {
+      name: "Sita Devi",
+      gender: "Female",
+      age: 45,
+      mobileNumber: 9876654321,
+      alternateNumber: 9456123456,
+      familyMembers: 7,
+      email: "sita.devi@example.com",
+      villageName: "Madhupur",
+      panchayat: "Madhupur Panchayat",
+      landmark: "Near the river bank",
+      district: "Deoghar",
+      tehsil: "Madhupur",
+      state: "Jharkhand",
+      landOwnership: true,
+      landArea: 180,
+      landType: "Agricultural",
+      landUsage: [1],
+      landDescription:
+        "A large piece of fertile land used for growing crops like maize and paddy.",
+      termsAgree: true,
+      contactConsent: true,
+    },
     basicInfo: {
       villageName: "Lakshmipur",
       state: "Kerala",
@@ -151,6 +318,29 @@ const dummyVillages = [
   },
   {
     id: 5,
+    ownerInformation: {
+      name: "Rahul Mehta",
+      gender: "Male",
+      age: 30,
+      mobileNumber: 9867432100,
+      alternateNumber: 9876543210,
+      familyMembers: 6,
+      email: "rahul.mehta@example.com",
+      villageName: "Kharar",
+      panchayat: "Kharar Panchayat",
+      landmark: "Opposite the market",
+      district: "Chandigarh",
+      tehsil: "Kharar",
+      state: "Punjab",
+      landOwnership: true,
+      landArea: 120,
+      landType: "Commercial",
+      landUsage: [2],
+      landDescription:
+        "A plot of land for building commercial shops and offices.",
+      termsAgree: true,
+      contactConsent: true,
+    },
     basicInfo: {
       villageName: "Bharatpur",
       state: "Rajasthan",
@@ -183,8 +373,334 @@ const dummyVillages = [
       internet: false,
       school: true,
     },
+    industrialPotential: "Sugarcane processing & biofuel",
     specialRequirements:
-      "Need water conservation infrastructure and reliable water supply",
+      "Urgent need for primary healthcare center and solar electricity",
+  },
+  {
+    id: 6,
+    ownerInformation: {
+      name: "Anjali Rani",
+      gender: "Female",
+      age: 26,
+      mobileNumber: 9911122334,
+      alternateNumber: 9876541234,
+      familyMembers: 2,
+      email: "anjali.rani@example.com",
+      villageName: "Bokaro",
+      panchayat: "Bokaro Panchayat",
+      landmark: "Near the post office",
+      district: "Bokaro",
+      tehsil: "Bokaro Tehsil",
+      state: "Jharkhand",
+      landOwnership: true,
+      landArea: 75,
+      landType: "Mixed",
+      landUsage: [1, 3],
+      landDescription: "A mix of agricultural and residential land.",
+      termsAgree: true,
+      contactConsent: true,
+    },
+    basicInfo: {
+      villageName: "Dharampur",
+      state: "Madhya Pradesh",
+      district: "Indore",
+      pinCode: "452001",
+      gpsCoordinates: "22.7196° N, 75.8577° E",
+    },
+    panchayatDetails: {
+      gramPanchayatName: "Dharampur Gram Panchayat",
+      sarpanchName: "Anil Verma",
+      sarpanchMobile: "9876543215",
+      blockTalukaName: "Sanwer",
+      panchayatEmail: "dharampur.gp@gmail.com",
+    },
+    populationDetails: {
+      totalPopulation: 3800,
+      malePopulation: 1950,
+      femalePopulation: 1850,
+      scPopulation: 800,
+      stPopulation: 350,
+      obcPopulation: 1400,
+      generalPopulation: 1250,
+      childPopulation: 720,
+    },
+    availableFacilities: {
+      water: true,
+      electricity: true,
+      pucca_road: true,
+      healthcareCenter: false,
+      internet: false,
+      school: true,
+    },
+    employmentOpportunities: {
+      agriculture: "Soybean, Wheat",
+      smallIndustries: "Dairy Farming",
+      digitalJobs: "None",
+    },
+    industrialPotential: "Dairy and food processing",
+    specialRequirements: "Need a primary healthcare center and internet access",
+  },
+  {
+    id: 7,
+    ownerInformation: {
+      name: "Pooja Sharma",
+      gender: "Female",
+      age: 28,
+      mobileNumber: 9912345678,
+      alternateNumber: 9908765432,
+      familyMembers: 3,
+      email: "pooja.sharma@example.com",
+      villageName: "Surajpur",
+      panchayat: "Surajpur Panchayat",
+      landmark: "Near the school",
+      district: "Ghaziabad",
+      tehsil: "Loni",
+      state: "Uttar Pradesh",
+      landOwnership: true,
+      landArea: 50,
+      landType: "Residential",
+      landUsage: [2],
+      landDescription: "A residential plot for constructing a house.",
+      termsAgree: true,
+      contactConsent: true,
+    },
+    basicInfo: {
+      villageName: "Rajgarh",
+      state: "Gujarat",
+      district: "Surat",
+      pinCode: "395001",
+      gpsCoordinates: "21.1702° N, 72.8311° E",
+    },
+    panchayatDetails: {
+      gramPanchayatName: "Rajgarh Gram Panchayat",
+      sarpanchName: "Bhavesh Patel",
+      sarpanchMobile: "9876543216",
+      blockTalukaName: "Olpad",
+      panchayatEmail: "rajgarh.gp@gmail.com",
+    },
+    populationDetails: {
+      totalPopulation: 4200,
+      malePopulation: 2200,
+      femalePopulation: 2000,
+      scPopulation: 750,
+      stPopulation: 200,
+      obcPopulation: 1800,
+      generalPopulation: 1450,
+      childPopulation: 900,
+    },
+    availableFacilities: {
+      water: true,
+      electricity: true,
+      pucca_road: true,
+      healthcareCenter: true,
+      internet: true,
+      school: true,
+    },
+    employmentOpportunities: {
+      agriculture: "Cotton, Groundnut",
+      smallIndustries: "Textile Weaving",
+      digitalJobs: "Data Entry",
+    },
+    industrialPotential: "Textile industry & cotton processing",
+    specialRequirements:
+      "Need a startup incubation center for small-scale textile businesses",
+  },
+  {
+    id: 8,
+    ownerInformation: {
+      name: "Vikram Singh",
+      gender: "Male",
+      age: 33,
+      mobileNumber: 8776543210,
+      alternateNumber: 9887654321,
+      familyMembers: 4,
+      email: "vikram.singh@example.com",
+      villageName: "Sahibganj",
+      panchayat: "Sahibganj Panchayat",
+      landmark: "Beside the railway station",
+      district: "Varanasi",
+      tehsil: "Varanasi",
+      state: "Uttar Pradesh",
+      landOwnership: true,
+      landArea: 200,
+      landType: "Agricultural",
+      landUsage: [1],
+      landDescription: "Farming land primarily used for growing sugarcane.",
+      termsAgree: true,
+      contactConsent: true,
+    },
+    basicInfo: {
+      villageName: "Pannapur",
+      state: "West Bengal",
+      district: "Nadia",
+      pinCode: "741101",
+      gpsCoordinates: "23.4042° N, 88.5016° E",
+    },
+    panchayatDetails: {
+      gramPanchayatName: "Pannapur Gram Panchayat",
+      sarpanchName: "Suman Ghosh",
+      sarpanchMobile: "9876543217",
+      blockTalukaName: "Krishnanagar",
+      panchayatEmail: "pannapur.gp@gmail.com",
+    },
+    populationDetails: {
+      totalPopulation: 3100,
+      malePopulation: 1600,
+      femalePopulation: 1500,
+      scPopulation: 700,
+      stPopulation: 150,
+      obcPopulation: 1100,
+      generalPopulation: 1150,
+      childPopulation: 600,
+    },
+    availableFacilities: {
+      water: true,
+      electricity: true,
+      pucca_road: false,
+      healthcareCenter: false,
+      internet: false,
+      school: true,
+    },
+    employmentOpportunities: {
+      agriculture: "Rice, Jute",
+      smallIndustries: "Handicrafts",
+      digitalJobs: "None",
+    },
+    industrialPotential: "Jute processing & handicraft exports",
+    specialRequirements: "Need better roads and a rural banking system",
+  },
+  {
+    id: 9,
+    ownerInformation: {
+      name: "Rajesh Kumar",
+      gender: "Male",
+      age: 40,
+      mobileNumber: 9876543210,
+      alternateNumber: 9123456789,
+      familyMembers: 5,
+      email: "rajesh.kumar@example.com",
+      villageName: "Babhani",
+      panchayat: "Babhani Panchayat",
+      landmark: "Near the temple",
+      district: "Ballia",
+      tehsil: "Ballia Tehsil",
+      state: "Uttar Pradesh",
+      landOwnership: true,
+      landArea: 100,
+      landType: "Agricultural",
+      landUsage: [1, 2],
+      landDescription:
+        "This is fertile agricultural land used for farming rice and wheat.",
+      termsAgree: true,
+      contactConsent: true,
+    },
+
+    basicInfo: {
+      villageName: "Bhavani",
+      state: "Tamil Nadu",
+      district: "Erode",
+      pinCode: "638301",
+      gpsCoordinates: "11.4419° N, 77.6820° E",
+    },
+    panchayatDetails: {
+      gramPanchayatName: "Bhavani Gram Panchayat",
+      sarpanchName: "Lakshmi Natarajan",
+      sarpanchMobile: "9876543218",
+      blockTalukaName: "Gobichettipalayam",
+      panchayatEmail: "bhavani.gp@gmail.com",
+    },
+    populationDetails: {
+      totalPopulation: 5000,
+      malePopulation: 2600,
+      femalePopulation: 2400,
+      scPopulation: 1200,
+      stPopulation: 300,
+      obcPopulation: 1900,
+      generalPopulation: 1600,
+      childPopulation: 1000,
+    },
+    availableFacilities: {
+      water: true,
+      electricity: true,
+      pucca_road: true,
+      healthcareCenter: true,
+      internet: true,
+      school: true,
+    },
+    employmentOpportunities: {
+      agriculture: "Coconut, Turmeric",
+      smallIndustries: "Silk Weaving",
+      digitalJobs: "Freelance Work",
+    },
+    industrialPotential: "Silk textile & turmeric processing",
+    specialRequirements:
+      "Need an e-commerce training center to help local artisans sell products",
+  },
+  {
+    id: 10,
+    ownerInformation: {
+      name: "Sita Devi",
+      gender: "Female",
+      age: 45,
+      mobileNumber: 9876654321,
+      alternateNumber: 9456123456,
+      familyMembers: 7,
+      email: "sita.devi@example.com",
+      villageName: "Madhupur",
+      panchayat: "Madhupur Panchayat",
+      landmark: "Near the river bank",
+      district: "Deoghar",
+      tehsil: "Madhupur",
+      state: "Jharkhand",
+      landOwnership: true,
+      landArea: 180,
+      landType: "Agricultural",
+      landUsage: [1],
+      landDescription:
+        "A large piece of fertile land used for growing crops like maize and paddy.",
+      termsAgree: true,
+      contactConsent: true,
+    },
+    basicInfo: {
+      villageName: "Nandgaon",
+      state: "Maharashtra",
+      district: "Nashik",
+      pinCode: "423106",
+      gpsCoordinates: "20.0110° N, 73.7910° E",
+    },
+    panchayatDetails: {
+      gramPanchayatName: "Nandgaon Gram Panchayat",
+      sarpanchName: "Prashant More",
+      sarpanchMobile: "9876543219",
+      blockTalukaName: "Malegaon",
+      panchayatEmail: "nandgaon.gp@gmail.com",
+    },
+    populationDetails: {
+      totalPopulation: 4600,
+      malePopulation: 2400,
+      femalePopulation: 2200,
+      scPopulation: 900,
+      stPopulation: 400,
+      obcPopulation: 1800,
+      generalPopulation: 1500,
+      childPopulation: 850,
+    },
+    availableFacilities: {
+      water: true,
+      electricity: true,
+      pucca_road: true,
+      healthcareCenter: false,
+      internet: false,
+      school: true,
+    },
+    employmentOpportunities: {
+      agriculture: "Grapes, Onions",
+      smallIndustries: "Wine Making",
+      digitalJobs: "Remote Data Entry",
+    },
+    industrialPotential: "Wine production & onion export",
+    specialRequirements: "Need a cold storage facility for perishable goods",
   },
 ];
 
@@ -336,7 +852,7 @@ const VillagesList = () => {
                   <div className="col-md-4">
                     <div className="card h-100">
                       <div className="card-header bg-primary text-white">
-                        <h5 className="mb-0">Basic Information</h5>
+                        <h5 className="mb-0">User Address </h5>
                       </div>
                       <div className="card-body">
                         <table className="table table-sm">
@@ -357,13 +873,6 @@ const VillagesList = () => {
                               <th>PIN Code</th>
                               <td>{village.basicInfo.pinCode}</td>
                             </tr>
-                            <tr>
-                              <th>GPS Coordinates</th>
-                              <td>
-                                {village.basicInfo.gpsCoordinates ||
-                                  "Not available"}
-                              </td>
-                            </tr>
                           </tbody>
                         </table>
                       </div>
@@ -373,7 +882,7 @@ const VillagesList = () => {
                   <div className="col-md-4">
                     <div className="card h-100">
                       <div className="card-header bg-success text-white">
-                        <h5 className="mb-0">Panchayat Details</h5>
+                        <h5 className="mb-0">User's Panchayat Details</h5>
                       </div>
                       <div className="card-body">
                         <table className="table table-sm">
@@ -544,7 +1053,7 @@ const VillagesList = () => {
                     </div>
                   </div>
                 </div>
-
+                <UserDetails data={village.ownerInformation} />
                 <div className="row mt-3">
                   <div className="col-md-6">
                     <div className="card">
@@ -784,7 +1293,7 @@ const VillagesList = () => {
 
                         <div className="d-grid gap-2 mt-3">
                           <button className="btn btn-primary">
-                            Contact Sarpanch
+                            Apply for this
                           </button>
                           <button className="btn btn-outline-success">
                             View Intervention Plans

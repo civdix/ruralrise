@@ -1,5 +1,5 @@
-import React, { useEffect } from "react";
-import { Link } from "react-router";
+import React, { useEffect, useState } from "react";
+import { Link, useNavigation } from "react-router";
 import {
   FaDonate,
   FaHome,
@@ -18,6 +18,9 @@ import { FcGallery } from "react-icons/fc";
 // import CalcContext from "./calcContext/calcContext";
 import "../Styles/navbar.css";
 function Navbar() {
+  const location = window.location.pathname;
+  const isLoggedIn = localStorage.getItem("businesstoken");
+  const [showLogin, setShowLogin] = useState(false);
   return (
     <nav className="navbar navbar-expand-lg navbar-light bg-white shadow-sm">
       <div className="container">
@@ -53,23 +56,60 @@ function Navbar() {
         </button>
 
         <div className="collapse navbar-collapse" id="navbarNav">
-          <ul className="navbar-nav mx-auto">
+          <ul
+            className={`navbar-nav mx-auto ${
+              location == "/" ? "d-none" : "d-unset"
+            }`}
+          >
+            <li className="nav-item">
+              <Link
+                className="nav-link"
+                style={{ textDecoration: "none", color: "black" }}
+                to="/"
+              >
+                Home
+              </Link>
+            </li>
+            {isLoggedIn && (
+              <li className="nav-item">
+                <Link className="nav-link" to="/BusinessDashboard">
+                  Dashboard
+                </Link>
+              </li>
+            )}
+          </ul>
+          <ul
+            className={`navbar-nav mx-auto ${
+              location != "/" ? "d-none" : "d-unset"
+            }`}
+          >
             <li className="nav-item">
               <a className="nav-link" href="/#about">
                 About
               </a>
             </li>
-            <li className="nav-item">
-              <Link className="nav-link" to="/VillageList">
-                Villages Listing
-              </Link>
-            </li>
+            {isLoggedIn && (
+              <>
+                <li className="nav-item">
+                  <Link className="nav-link" to="/VillageList">
+                    Land Listing
+                  </Link>
+                </li>
+
+                <li className="nav-item">
+                  <Link className="nav-link" to="/BusinessDashboard">
+                    Dashboard
+                  </Link>
+                </li>
+              </>
+            )}
+
             <li className="nav-item">
               <a className="nav-link" href="/#benefits">
                 Benefits
               </a>
             </li>
-            <li className="nav-item">
+            <li className="nav-item d-none">
               <a className="nav-link" href="/#success">
                 Success Stories
               </a>
@@ -80,7 +120,49 @@ function Navbar() {
               </a>
             </li>
           </ul>
-          <button className="btn btn-success">Log In</button>
+          {!isLoggedIn && (
+            <button
+              className="btn btn-success"
+              onMouseEnter={() => {
+                setShowLogin(true);
+              }}
+              onMouseLeave={() => {
+                setShowLogin(false);
+              }}
+            >
+              <span
+                style={{ textDecoration: "none", color: "white" }}
+                to="/Login"
+              >
+                Log in
+              </span>
+              <div
+                style={{ width: "15%", marginLeft: "-5%" }}
+                className={`loginOptions d-flex flex-column text-light z-2 position-absolute ${
+                  showLogin ? "d-unset" : "d-none"
+                }`}
+              >
+                {" "}
+                <Link
+                  style={{ textDecoration: "none", color: "white" }}
+                  to="/businessLogin"
+                >
+                  <button className="btn btn-primary border border-success">
+                    {" "}
+                    Business login
+                  </button>
+                </Link>
+                <Link
+                  style={{ textDecoration: "none", color: "white" }}
+                  to="/VillageLogin"
+                >
+                  <button className="btn btn-success border border-primary">
+                    Villager login
+                  </button>
+                </Link>
+              </div>
+            </button>
+          )}
         </div>
       </div>
     </nav>

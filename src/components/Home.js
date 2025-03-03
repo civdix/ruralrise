@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 import Navbar from "./Navbar";
 import FAQ from "./FAQ";
 const RuralRiseHomepage = () => {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  let isLoggedIn = localStorage.getItem("businesstoken");
 
   return (
     <div>
@@ -16,7 +16,7 @@ const RuralRiseHomepage = () => {
       {/* Hero Section */}
       <section className="py-5 py-md-6 bg-light">
         <div className="container text-center">
-          <h1 className="display-4 fw-bold mb-4">Rural Rise Project</h1>
+          <h1 className="display-4 fw-bold mb-4">Rural Rise</h1>
           <p className="lead mb-5 mx-auto" style={{ maxWidth: "800px" }}>
             An initiative focused on leveraging existing village infrastructure
             to attract companies, fostering mutual benefits for businesses and
@@ -69,11 +69,11 @@ const RuralRiseHomepage = () => {
                   <polyline points="9 22 9 12 15 12 15 22" />
                 </svg>
                 <Link
-                  to="/VillageSignup"
+                  to="/VillagerSignUp"
                   className="text-white"
                   style={{ textDecoration: "none" }}
                 >
-                  Join as Village
+                  Join as Villager
                 </Link>
               </button>
             </div>
@@ -266,7 +266,7 @@ const RuralRiseHomepage = () => {
                     </h3>
                   </div>
                   <p className="text">
-                    Rural Rise Project establishes training centers to upskill
+                    Rural Rise Web App establishes training centers to upskill
                     local communities, preparing them for employment
                     opportunities with partner companies. This focus on
                     education ensures sustainable economic development.
@@ -299,7 +299,7 @@ const RuralRiseHomepage = () => {
                     <h3 className="h5 fw-bold mb-0">Eco-Friendly Practices</h3>
                   </div>
                   <p className="text">
-                    The project promotes environmentally sustainable business
+                    The Website promotes environmentally sustainable business
                     operations, ensuring minimal ecological impact while
                     maximizing economic benefits for both rural communities and
                     partner companies.
@@ -312,7 +312,7 @@ const RuralRiseHomepage = () => {
       </section>
 
       {/* Testimonials */}
-      <section className="py-5 bg-light" id="success">
+      <section className="py-5 bg-light d-none" id="success">
         <div className="container">
           <h2 className="text-center fw-bold mb-5">Success Stories</h2>
 

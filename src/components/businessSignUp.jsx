@@ -1,5 +1,6 @@
 import React, { useState } from "react";
-
+import { FaBackward } from "react-icons/fa";
+import { Link } from "react-router";
 const BusinessOwnerSignup = () => {
   const [formData, setFormData] = useState({
     // Personal details (required)
@@ -73,6 +74,18 @@ const BusinessOwnerSignup = () => {
     } else {
       setErrors(formErrors);
     }
+    const response = fetch("http://localhost:5000/api/auth/BusinessSignUp", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(formData),
+    })
+      .then((response) => response.json())
+      .then((data) => console.log(data))
+      .catch((error) => {
+        console.error("Error from BusinessSignUp Fetch:", error);
+      });
   };
 
   if (submitted) {
@@ -90,7 +103,9 @@ const BusinessOwnerSignup = () => {
               className="btn btn-primary mt-3"
               onClick={() => setSubmitted(false)}
             >
-              Register Another Business
+              <Link to="/" style={{ textDecoration: "none", color: "white" }}>
+                Click here to Home Page
+              </Link>
             </button>
           </div>
         </div>
@@ -101,8 +116,13 @@ const BusinessOwnerSignup = () => {
   return (
     <div className="container mt-4 mb-5">
       <div className="card shadow">
-        <div className="card-header bg-primary text-white">
-          <h2 className="mb-0">RURAL RISE - Business Owner Registration</h2>
+        <div className="card-header bg-primary text-white text-center">
+          <Link to="/">
+            <FaBackward size={25} className="float-start my-2" color="white" />
+          </Link>
+          <h2 className="mb-0 mx-auto">
+            RURAL RISE - Business Owner Registration
+          </h2>
         </div>
         <div className="card-body">
           <form onSubmit={handleSubmit}>
@@ -366,17 +386,15 @@ const BusinessOwnerSignup = () => {
                     onChange={handleChange}
                   >
                     <option value="">Select Revenue Range</option>
-                    <option value="Under $50,000">Under $50,000</option>
-                    <option value="$50,000 - $100,000">
-                      $50,000 - $100,000
+                    <option value="Under 50,000">Under 50,000</option>
+                    <option value="50,000 - 500,000">50,000-5,00,000</option>
+                    <option value="500,000 - 25,00,000">
+                      500,000-25,00,000
                     </option>
-                    <option value="$100,000 - $500,000">
-                      $100,000 - $500,000
+                    <option value="25,00,000 - 50,00,000">
+                      25,00,000 - 50,00,000
                     </option>
-                    <option value="$500,000 - $1 million">
-                      $500,000 - $1 million
-                    </option>
-                    <option value="Over $1 million">Over $1 million</option>
+                    <option value="Over 50,00,000">Over 50,00,000</option>
                   </select>
                 </div>
               </div>
@@ -417,7 +435,7 @@ const BusinessOwnerSignup = () => {
             </div>
 
             <div className="mt-3 text-center">
-              Already have an account? <a href="#">Sign In</a>
+              Already have an account? <Link to="/businesslogin">Sign In</Link>
             </div>
           </form>
         </div>
