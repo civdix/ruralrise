@@ -16,6 +16,7 @@
     "jsonwebtoken": "^9.0.2",
     "lucide-react": "^0.476.0",
     "mongoose": "^8.11.0",
+    "node-mailjet": "^6.0.6",
     "react": "^19.0.0",
     "react-bootstrap": "^2.10.9",
     "react-dom": "^19.0.0",

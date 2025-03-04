@@ -1,0 +1,144 @@
+.imagePanditJi {
+  margin-top: 20svh;
+  animation: floating 4s linear infinite;
+  display: inline-block;
+  width: 45%;
+}
+.imgPanditJi {
+  margin-left: 25%;
+}
+.contactUsForm {
+  height: 70vh;
+}
+.titleContactUs {
+  font-size: 50px; /* Adjust size as needed */
+  font-weight: bold;
+  text-transform: uppercase;
+  text-align: center;
+  background: linear-gradient(90deg, gold, black);
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+  -webkit-text-stroke: 0.3px black;
+  animation: goldShine 3s linear infinite;
+}
+
+/* Add a glowing effect */
+@keyframes goldShine {
+  0% {
+    background-position: 100%;
+  }
+  25% {
+    background-position: 50%;
+  }
+  100% {
+    background-position: 0%;
+  }
+}
+
+.titleContactUs {
+  font-size: 50px;
+  font-weight: bold;
+  text-transform: uppercase;
+  text-align: center;
+  color: rgb(47, 0, 255);
+  text-shadow: 3px 3px 5px black, 0px 0px 10px gold;
+}
+
+@keyframes floating {
+  0% {
+    margin-top: 10vh;
+  }
+  25% {
+    margin-top: 8vh;
+  }
+  50% {
+    margin-top: 6vh;
+  }
+  75% {
+    margin-top: 8vh;
+  }
+  100% {
+    margin-top: 10vh;
+  }
+}
+
+.contactUsForm {
+  width: fit-content;
+  margin-top: 50%;
+  float: right;
+  padding-right: -5%;
+}
+.contactUsForm div {
+  display: flex;
+  flex-direction: column;
+}
+.userdetails {
+  margin-left: 5%;
+}
+.userdetails input {
+  border: 1px solid black;
+  margin-bottom: 1%;
+  margin-left: 0%;
+
+  width: 90%;
+  height: 6vh;
+  max-height: 100px;
+  background-color: rgb(0, 0, 0);
+  color: white;
+  /* border-radius: 30px; */
+  padding-left: 2%;
+  border-width: 1px;
+  border-image-slice: 4;
+  border-image-source: linear-gradient(0deg, gold, black);
+  animation: goldenRun 5s linear infinite;
+}
+.userdetails label::after {
+  content: " :";
+}
+.userdetails input::-webkit-input-placeholder {
+  color: white;
+}
+.contactUsForm input[type="button"] {
+  width: 90%;
+  background-color: blueviolet;
+  margin: 2% 0 0 2%;
+}
+.contactUsForm input[type="button"]:hover {
+  background-color: rgb(119, 3, 228);
+  border: 1px solid white;
+  color: white;
+}
+.Message {
+  padding: 0% 0% 0% 5%;
+  width: 90%;
+}
+
+.contactUsForm textarea {
+  border-radius: 5px;
+  padding: 0px 0.5px 0px 0.5px;
+  color: white;
+  background-color: black;
+}
+.contactUsForm textarea::placeholder {
+  color: white;
+  opacity: 1;
+}
+
+@keyframes goldenRun {
+  0% {
+    border-image-source: linear-gradient(0deg, gold, black);
+  }
+  25% {
+    border-image-source: linear-gradient(90deg, gold, black);
+  }
+  50% {
+    border-image-source: linear-gradient(180deg, gold, black);
+  }
+  75% {
+    border-image-source: linear-gradient(270deg, gold, black);
+  }
+  100% {
+    border-image-source: linear-gradient(360deg, gold, black);
+  }
+}

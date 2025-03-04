@@ -17,6 +17,7 @@ import VillageRegistrationForm from "./components/villageLandListingRegistration
 import VillagesList from "./components/villageList";
 import BusinessLogin from "./components/businesLogin";
 import RuralRiseBusinessDashboard from "./components/businessDashboard";
+import ContactUs from "./components/ContactUs";
 const App = () => {
   const [loggedIn, setLoggedIn] = useState(false);
 
@@ -52,6 +53,7 @@ const App = () => {
           <Route path="/BusinessSignup" element={<BusinessOwnerSignup />} />
           <Route path="/village-portal" element={<VillagePortal />} />
           <Route path="/Villagelist" element={<VillagesList />} />
+          <Route path="/ContactUs" element={<ContactUs />} />
           {/* <Route path="/VillageDashboard" element={<villageDashboard />} /> */}
 
           {/* Redirect to home if not logged in */}

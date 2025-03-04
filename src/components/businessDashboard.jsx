@@ -12,6 +12,7 @@ import {
 import RuralContext from "./context/ruralContext";
 // Sample data for villagers
 import { Link } from "react-router-dom";
+import { FiLogOut } from "react-icons/fi";
 const villagerData = [
   {
     id: 1,
@@ -187,6 +188,14 @@ function RuralRiseBusinessDashboard() {
             <div className="d-flex align-items-center">
               <span className="me-3">Welcome, {businessOwner.firstName}</span>
               <Badge bg="primary">{businessDetails.businessType}</Badge>
+              <FiLogOut
+                cursor="pointer"
+                className="mx-3"
+                size={25}
+                onClick={() => {
+                  localStorage.clear();
+                }}
+              />
             </div>
           </div>
         </Container>
