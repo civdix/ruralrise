@@ -431,45 +431,49 @@ const RuralRiseHomepage = () => {
 
           {!isLoggedIn && (
             <div className="d-flex flex-column flex-md-row gap-3 justify-content-center">
-              <button className="btn btn-light text-success btn-lg">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="20"
-                  height="20"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  className="me-2"
-                >
-                  <rect x="4" y="4" width="16" height="16" rx="2" ry="2" />
-                  <path d="M9 22v-4h6v4" />
-                  <path d="M8 2h8" />
-                  <path d="M16 2v2" />
-                  <path d="M8 2v2" />
-                </svg>
-                Join as Business
-              </button>
-              <button className="btn btn-light text-primary btn-lg">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="20"
-                  height="20"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  className="me-2"
-                >
-                  <path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
-                  <polyline points="9 22 9 12 15 12 15 22" />
-                </svg>
-                Join as Village
-              </button>
+              <Link to="/BusinessSignUp">
+                <button className="btn btn-light text-success btn-lg">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="20"
+                    height="20"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    className="me-2"
+                  >
+                    <rect x="4" y="4" width="16" height="16" rx="2" ry="2" />
+                    <path d="M9 22v-4h6v4" />
+                    <path d="M8 2h8" />
+                    <path d="M16 2v2" />
+                    <path d="M8 2v2" />
+                  </svg>
+                  Join as Business
+                </button>
+              </Link>
+              <Link to="/VillagerSignup">
+                <button className="btn btn-light text-primary btn-lg">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="20"
+                    height="20"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    className="me-2"
+                  >
+                    <path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
+                    <polyline points="9 22 9 12 15 12 15 22" />
+                  </svg>
+                  Join as Villager
+                </button>
+              </Link>
             </div>
           )}
         </div>

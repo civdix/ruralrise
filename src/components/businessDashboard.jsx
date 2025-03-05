@@ -11,7 +11,7 @@ import {
 } from "react-bootstrap";
 import RuralContext from "./context/ruralContext";
 // Sample data for villagers
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { FiLogOut } from "react-icons/fi";
 const villagerData = [
   {
@@ -97,31 +97,32 @@ const recommendedLand = [
 
 // Business details
 function RuralRiseBusinessDashboard() {
+  const navigate = useNavigate();
   const { business, setBusiness, getBusinessDetails } =
     useContext(RuralContext);
-  if (business.length < 3) {
-    setBusiness({
-      firstName: "Shivam",
-      lastName: "doxot",
-      email: "shivamdixit@gmail.com",
-      phone: "9720943948",
-      password: "66666600",
-      businessName: "Shivdix",
-      businessType: "Technology",
-      businessAddress: "Vrindavan, Parikrama Marg, panighat",
-      businessPhone: "+91943943454",
-      businessWebsite: "https://shivamfrommathura.blogspot.com",
-      yearsInOperation: 2,
-      employeeCount: 1,
-      annualRevenue: "Under 50,000",
-      businessDescription:
-        "I am the sole proprietor for this business, it is an IT Company which provides end-to-end IT support",
-      submissionStatus: "Pending",
-    });
-  }
-  // useEffect(() => {
-  //   getBusinessDetails();
-  // }, []);
+  // if (business.length < 3) {
+  //   setBusiness({
+  //     firstName: "Shivam",
+  //     lastName: "doxot",
+  //     email: "shivamdixit@gmail.com",
+  //     phone: "9720943948",
+  //     password: "66666600",
+  //     businessName: "Shivdix",
+  //     businessType: "Technology",
+  //     businessAddress: "Vrindavan, Parikrama Marg, panighat",
+  //     businessPhone: "+91943943454",
+  //     businessWebsite: "https://shivamfrommathura.blogspot.com",
+  //     yearsInOperation: 2,
+  //     employeeCount: 1,
+  //     annualRevenue: "Under 50,000",
+  //     businessDescription:
+  //       "I am the sole proprietor for this business, it is an IT Company which provides end-to-end IT support",
+  //     submissionStatus: "Pending",
+  //   });
+  // }
+  useEffect(() => {
+    console.log(getBusinessDetails());
+  }, []);
   const [businessDetails, setBusinessDetails] = useState({
     businessName: business.businessName,
     businessType: business.businessType,
@@ -194,6 +195,7 @@ function RuralRiseBusinessDashboard() {
                 size={25}
                 onClick={() => {
                   localStorage.clear();
+                  navigate("/");
                 }}
               />
             </div>
@@ -268,7 +270,7 @@ function RuralRiseBusinessDashboard() {
                         <Table hover>
                           <thead>
                             <tr>
-                              <th>Name</th>
+                              <th>Owner Name</th>
                               <th>Village</th>
                               <th>Land Size</th>
                               {/* <th>Crop Type</th> */}

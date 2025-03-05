@@ -121,7 +121,7 @@ function Navbar() {
             </li>
           </ul>
           {!isLoggedIn && (
-            <button
+            <div
               className="btn btn-success"
               onMouseEnter={() => {
                 setShowLogin(true);
@@ -161,7 +161,7 @@ function Navbar() {
                   </button>
                 </Link>
               </div>
-            </button>
+            </div>
           )}
         </div>
       </div>

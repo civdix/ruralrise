@@ -12,7 +12,7 @@ const mailjet = require("node-mailjet").apiConnect(
   process.env.MAILJET_API_KEY,
   process.env.MAILJET_SECRET_KEY
 );
-app.use(require("cors")({ origin: "http://localhost:3000" }));
+app.use(cors({ origin: "http://localhost:3000" }));
 app.use("/api/auth/", require("./routes/auth.js"));
 app.use("/api/data/", require("./routes/shareData.js"));
 app.get("/", (req, res) => {

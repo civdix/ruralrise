@@ -9,7 +9,7 @@ import {
   FaUserAlt,
 } from "react-icons/fa";
 
-const UserDetails = ({ data }) => {
+const UserDetails = ({ data, coordinates }) => {
   return (
     <div className="container mt-4">
       <div className="row">
@@ -60,7 +60,10 @@ const UserDetails = ({ data }) => {
                 {data.landOwnership ? "Yes" : "No"}
               </p>
               <p>
-                <strong>Land Area:</strong> {data.landArea} sq. meters
+                <strong>Land Area:</strong> {data.landArea} acres
+              </p>
+              <p>
+                <strong>Land coordinates:</strong> {coordinates}
               </p>
               <p>
                 <strong>Land Type:</strong> {data.landType}
@@ -1053,7 +1056,10 @@ const VillagesList = () => {
                     </div>
                   </div>
                 </div>
-                <UserDetails data={village.ownerInformation} />
+                <UserDetails
+                  data={village.ownerInformation}
+                  coordinates={village.basicInfo.gpsCoordinates}
+                />
                 <div className="row mt-3">
                   <div className="col-md-6">
                     <div className="card">

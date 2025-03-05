@@ -3,40 +3,46 @@ import RuralContext from "./ruralContext";
 
 const RiseState = (props) => {
   // There getShare method Not Working
+  const [isLoggedIn, setIsLoggedIn] = useState(() => {
+    return localStorage.getItem("businesstoken") ? true : false;
+  });
   const [business, setBusiness] = useState({});
-  const getBusinessDetails = () => {
+  const getBusinessDetails = async () => {
     try {
-      console.log("Enter in fetch for businessData");
-      fetch("http://localhost:5000/api/data/businessData", {
-        method: "GET",
-        headers: {
-          "Content-Type": "application/json",
-          businesstoken: localStorage.getItem("businesstoken"),
-        },
-      })
-        .then((response) => {
-          setBusiness(response.data);
-          console.log(response);
-        })
-        .catch((err) => {
-          console.log(
-            "Error in making data set using setBusiness in business get fetch api",
-            err
-          );
-        });
-    } catch (err) {
-      console.error(
-        "Network error! Please try again later. from risestate of businessData get"
+      console.log("Fetching business details...");
+
+      const response = await fetch(
+        "http://localhost:5000/api/data/businessData",
+        {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+            businesstoken: localStorage.getItem("businesstoken"),
+          },
+        }
       );
-      console.log(err);
+
+      if (!response.ok) {
+        throw new Error(`HTTP error! Status: ${response.status}`);
+      }
+
+      const data = await response.json();
+      setBusiness(data.businessData); // Assuming setBusiness is a state updater function
+
+      return data.businessData; // Return data so caller can use it
+    } catch (err) {
+      console.error("Error fetching business details:", err);
     }
   };
+
   return (
     <RuralContext.Provider
       value={{
         business,
         setBusiness,
         getBusinessDetails,
+        isLoggedIn,
+        setIsLoggedIn,
       }}
     >
       {props.children}{" "}
